@@ -1,0 +1,24 @@
+```{r}
+#vector con valores aleatorios pasar los pesos en libras
+pesos <- runif(25, min=160, max=200 )
+matriz_libras <- matrix(pesos, nrow=5, ncol=5, byrow= FALSE)
+
+meses <- c("Enero", "Febreo","Marzo","Abril","Mayo")
+personas <- c("Carlos","Julia","Enrique","Ester","Juan")
+
+colnames(matriz_libras)<- meses
+rownames(matriz_libras)<- personas
+matriz_libras
+
+#promedido de cada persona de enero a mayo
+promedio_cada_persona <- rowMeans(matriz_libras, na.rm=TRUE)
+matriz_peso_persona<- cbind(matriz_libras, promedio_cada_persona)
+
+#promedio cada mes de todas las personas
+promedio_cada_mes <- colMeans(matriz_peso_persona, na.rm=TRUE)
+matriz_resultado <- rbind(matriz_peso_persona, promedio_cada_mes)
+
+
+matriz_resultado
+```
+
