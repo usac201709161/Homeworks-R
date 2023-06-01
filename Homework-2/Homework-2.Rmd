@@ -1,0 +1,317 @@
+Funciones en R
+
+#Estructura de una función
+
+una función se define utilizando la palabra clave "function" seguida del nombre
+de la función y los parámetros que aceptará. La estructura general de una función 
+en R es la siguiente:
+
+```{r}
+nombre_funcion <- function(parametro1, paremetro2...){
+  # Cuerpo de la función: código que se ejecutará al llamar a la función
+  # Puede contener una o varias líneas de código
+  # Puede incluir operaciones, asignaciones, estructuras de control, llamadas a otras funciones, etc.
+  
+  # Última expresión evaluada será el valor retornado por la función
+  
+  return(valor_retorno)
+}
+```
+
+EJEMPLO 
+```{r}
+calcular_area_circulo <- function(radio) {
+  pi <- 3.14159  # Definir el valor de pi
+  area <- pi * radio^2  # Calcular el área del círculo
+  return(area)  # Retornar el área calculada
+}
+```
+En este ejemplo, la función "calcular_area_circulo" acepta un parámetro "radio" 
+que representa el radio del círculo. Dentro de la función, se define el 
+valor de pi, se calcula el área utilizando la fórmula correspondiente y 
+se devuelve el resultado utilizando la instrucción "return".
+
+Para utilizar la función, simplemente llamamos a la función proporcionando el 
+valor del radio deseado y capturamos el resultado si es necesario:
+
+```{r}
+area_circulo <- calcular_area_circulo(5)
+print(area_circulo)
+```
+#Argumentos de una función en R
+
+Una función puede aceptar diferentes tipos de argumentos. 
+A continuación se presentan los tipos de argumentos comunes que 
+se pueden utilizar en una función en R:
+
+##Argumentos obligatorios: 
+Son aquellos que deben ser proporcionados
+al llamar a la función. Si no se proporciona un valor para un argumento 
+obligatorio, se producirá un error. Por ejemplo:
+
+```{r}
+mi_funcion <- function(a, b) {
+  # Cuerpo de la función
+  # ...
+}
+```
+En este caso, "a" y "b" son argumentos obligatorios y deben ser proporcionados 
+al llamar a la función "mi_funcion".
+
+##Argumentos predeterminados: 
+Son argumentos que tienen un valor predefinido asignado en caso de que no se 
+proporcione un valor al llamar a la función. Estos valores predeterminados 
+se especifican durante la definición de la función. Por ejemplo:
+
+```{r}
+mi_funcion <- function(a, b = 10) {
+  # Cuerpo de la función
+  # ...
+}
+```
+En este caso, si no se proporciona un valor para "b" al llamar a la función, 
+se utilizará el valor predeterminado de 10.
+
+##Argumentos de longitud variable: 
+En algunas situaciones, puede ser útil permitir que una función acepte un número variable de argumentos. En R, se pueden utilizar argumentos de longitud variable utilizando los tres puntos (...). Por ejemplo:
+
+```{r}
+mi_funcion <- function(...){
+  # Cuerpo de la función
+  # ...
+}
+```
+En este caso, la función "mi_funcion" puede aceptar cualquier 
+número de argumentos.
+
+#Argumentos por valor
+Los argumentos se pasan por valor de forma predeterminada. Esto significa que 
+cuando se llama a una función y se pasa un argumento, se crea una copia del 
+valor del argumento en la función, y cualquier modificación realizada dentro 
+de la función no afectará al valor original fuera de la función.
+
+```{r}
+duplicar_valor <- function(x) {
+  x <- x * 2  # Duplicar el valor de x
+  return(x)
+}
+
+mi_numero <- 5
+resultado <- duplicar_valor(mi_numero)
+print(mi_numero)  # Imprime: 5 (el valor original no se modificó)
+print(resultado)  # Imprime: 10 (valor duplicado dentro de la función)
+```
+Familia apply
+
+#lapply
+lapply() es una función muy útil en R cuando se desea aplicar una función a
+cada elemento de una lista o vector. Permite evitar la necesidad de escribir 
+bucles explícitos y simplifica el código. Puedes utilizar lapply() con 
+funciones predefinidas en R o con funciones personalizadas que hayas definido.
+
+La estructura básica de lapply() es la siguiente:
+
+```{r}
+lapply(X, FUN, ...)
+
+#X es la lista o vector sobre el cual se aplicará la función.
+#FUN es la función que se aplicará a cada elemento de X.
+#... son argumentos adicionales que pueden ser pasados a FUN.
+```
+##Uso de lapply con funciones
+El uso de lapply() con funciones en R es muy flexible y permite aplicar una 
+función personalizada a cada elemento de una lista o vector. Puedes definir 
+la función directamente en el argumento FUN de lapply() o utilizar una función
+previamente definida.
+
+##función definida en línea:
+
+```{r}
+# Lista de números
+numeros <- list(1, 2, 3, 4, 5)
+
+# Utilizar lapply con una función definida en línea para calcular el doble de cada número
+resultado <- lapply(numeros, function(x) { 2 * x })
+
+# Imprimir el resultado
+print(resultado)
+
+```
+En este ejemplo, se utiliza una función definida en línea que multiplica cada 
+número por 2. lapply() aplica esta función a cada elemento de la lista 
+numeros y devuelve una lista con los resultados.
+
+##Función previamente definida:
+```{r}
+# Definir una función personalizada para calcular el factorial de un número
+calcular_factorial <- function(n) {
+  if (n <= 1) {
+    return(1)
+  } else {
+    return(n * calcular_factorial(n - 1))
+  }
+}
+
+# Vector de números
+numeros <- c(3, 5, 7, 10)
+
+# Aplicar la función calcular_factorial a cada número utilizando lapply
+factoriales <- lapply(numeros, calcular_factorial)
+
+# Imprimir los factoriales
+print(factoriales)
+```
+se utiliza la función previamente definida calcular_factorial() para calcular el 
+factorial de cada número en el vector numeros. lapply() aplica esta función a 
+cada elemento y devuelve una lista con los resultados.
+
+##Utilizando argumentos adicionales en la función:
+```{r}
+# Lista de nombres
+nombres <- list("Juan", "María", "Pedro", "Laura")
+
+# Definir una función personalizada para agregar un sufijo a un nombre
+agregar_sufijo <- function(nombre, sufijo) {
+  return(paste(nombre, sufijo, sep = "_"))
+}
+
+# Aplicar la función agregar_sufijo a cada nombre utilizando lapply con un argumento adicional
+nombres_sufijo <- lapply(nombres, agregar_sufijo, sufijo = "001")
+
+# Imprimir los nombres con sufijo
+print(nombres_sufijo)
+```
+En este ejemplo, se utiliza la función personalizada agregar_sufijo() para agregar 
+un sufijo a cada nombre en la lista nombres. lapply() aplica esta función a 
+cada elemento y pasa el argumento adicional sufijo = "001". Se devuelve una 
+lista con los nombres modificados.
+
+#Sapply 
+La función sapply() en R es una variante simplificada de la función lapply(). Al igual que lapply(), sapply() se utiliza para aplicar una función a cada elemento de una lista o vector, pero a diferencia de lapply(), sapply() intenta simplificar el resultado en lugar de devolver siempre una lista.
+
+La estructura básica de sapply() es la siguiente:
+
+```{r}
+sapply(X, FUN, ...)
+
+#X es la lista o vector sobre el cual se aplicará la función.
+#FUN es la función que se aplicará a cada elemento de X.
+#... son argumentos adicionales que pueden ser pasados a FUN.
+
+```
+sapply() intenta simplificar el resultado obtenido aplicando la función FUN a cada elemento de X y devuelve un vector o matriz simplificado, en lugar de una lista.
+
+##Uso de sapply con funciones
+El uso de sapply() con funciones en R es similar al uso de lapply(). sapply() 
+se utiliza para aplicar una función a cada elemento de una 
+lista o vector, y devuelve un vector o matriz simplificado como resultado.
+
+##Utilizando una función predefinida
+```{r}
+# Vector de números
+numeros <- c(1, 2, 3, 4, 5)
+
+# Utilizar sapply con una función predefinida para calcular el logaritmo de cada número
+logaritmos <- sapply(numeros, log)
+
+# Imprimir los logaritmos
+print(logaritmos)
+
+```
+En este ejemplo, se utiliza sapply() junto con la función predefinida log() 
+para calcular el logaritmo de cada número en el vector numeros. El resultado
+es un vector con los logaritmos de los números.
+
+##Utilizando una función personalizada
+```{r}
+# Definir una función personalizada para determinar si un número es par o impar
+es_par_impar <- function(x) {
+  if (x %% 2 == 0) {
+    return("Par")
+  } else {
+    return("Impar")
+  }
+}
+
+# Vector de números
+numeros <- c(1, 2, 3, 4, 5)
+
+# Aplicar la función es_par_impar a cada número utilizando sapply
+par_impar <- sapply(numeros, es_par_impar)
+
+# Imprimir si cada número es par o impar
+print(par_impar)
+```
+En este ejemplo, se utiliza la función personalizada es_par_impar() para 
+determinar si un número es par o impar. sapply() se utiliza para aplicar esta función a cada elemento del vector numeros. El resultado es un vector que indica si cada número es par o impar.
+
+##Utilizando argumentos adicionales en la función
+```{r}
+# Vector de números
+numeros <- c(1, 2, 3, 4, 5)
+
+# Utilizar sapply con una función predefinida y un argumento adicional
+resultados <- sapply(numeros, function(x, y) x^y, y = 3)
+
+# Imprimir los resultados
+print(resultados)
+
+```
+En este ejemplo, se utiliza una función definida en línea que eleva cada número 
+a una potencia específica. sapply() se utiliza para aplicar esta función a 
+cada elemento del vector numeros, y se pasa el argumento adicional y = 3 a 
+la función. El resultado es un vector con los números elevados a la potencia 3.
+
+#Vapply
+La función vapply() en R es similar a sapply(), pero proporciona un control 
+más estricto sobre el tipo y la longitud de los resultados. A diferencia 
+de sapply(), vapply() requiere especificar el tipo de resultado que se 
+espera, lo que puede ayudar a prevenir errores y proporcionar mayor
+seguridad en la programación.
+
+La estructura básica de vapply() es la siguiente:
+```{r}
+vapply(X, FUN, FUN.VALUE, ...)
+#X es la lista o vector sobre el cual se aplicará la función.
+#FUN es la función que se aplicará a cada elemento de X.
+#FUN.VALUE es el tipo de resultado esperado.
+#... son argumentos adicionales que pueden ser pasados a FUN.
+```
+##Uso de vapply con funciones 
+El uso de vapply() con funciones en R implica aplicar una función a cada 
+elemento de una lista o vector, al tiempo que se especifica el tipo y la 
+longitud del resultado esperado. Esto proporciona un control más estricto 
+sobre los resultados y ayuda a prevenir errores.
+```{r}
+# Vector de números
+numeros <- c(1, 2, 3, 4, 5)
+
+# Utilizar vapply con una función personalizada para determinar si cada número es par o impar
+resultado <- vapply(numeros, function(x) {
+  if (x %% 2 == 0) {
+    return("Par")
+  } else {
+    return("Impar")
+  }
+}, FUN.VALUE = character(1))
+
+# Imprimir el resultado
+print(resultado)
+```
+En este ejemplo, se utiliza vapply() junto con una función definida en línea 
+para determinar si cada número en el vector numeros es par o impar. La función 
+aplica una lógica condicional y devuelve "Par" si el número es divisible 
+por 2 y "Impar" en caso contrario.
+
+La parte FUN.VALUE = character(1) en vapply() especifica que se espera un 
+resultado de tipo caracter (string) de longitud 1 para cada elemento. 
+Esto asegura que el resultado cumpla con las especificaciones.
+
+Si la función aplicada devuelve resultados que no coinciden con el tipo y la 
+longitud especificados en FUN.VALUE, vapply() mostrará un error. Esto 
+proporciona una mayor seguridad y control sobre los resultados obtenidos.
+
+Es importante tener en cuenta que vapply() requiere especificar el tipo y la 
+longitud del resultado esperado en FUN.VALUE, lo que puede requerir un poco 
+más de trabajo en comparación con sapply(). Sin embargo, esto ofrece una 
+mayor precisión en la programación y ayuda a evitar errores.
