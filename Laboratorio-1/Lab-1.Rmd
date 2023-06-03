@@ -76,7 +76,63 @@ Funciones condicionales y bucles
 ```{r}
 #inciso 6.1
 
+recorrer_matriz <- function(r_matriz){
+  for (i in 1:nrow(r_matriz)) {
+  for (j in 1:ncol(r_matriz[,1:4])) {
+    print(r_matriz[i,j])
+  }
+  
+}
+}
+
+recorrer_matriz(matriz_estudiantes)
+
+#inciso 6.2
+recorrer_matriz <- function(r_matriz){
+  for (i in 1:nrow(r_matriz)) {
+  for (j in 1:ncol(r_matriz[,1:4])) {
+    print(r_matriz[i,j])
+        if (r_matriz[i,j]<=45) {
+      
+      print("estudiante en riesgo")
+      
+    }else if (r_matriz[i,j]>45 & r_matriz[i,j]<61 ){
+      
+      print("estudiante aprobado")
+    }else{
+      
+      print("estudiante aprobado")
+    }
+  }
+  
+}
+}
+
+
+recorrer_matriz(matriz_resul)
 
 ```
+Data frame y lapply
+```{r}
+#punto 7.1
+index_education <-function(grade){
+  index<- (1+ (grade /100))/2
+  return(index)
+  
+  index_education(50)
+}
+
+#punt0 7.2
+estudiantes_df
+seleccion_estudiantes <- estudiantes_df[,1:4]
+seleccion_estudiantes
+
+#punto 7.3
+
+aplicando_lapply <- lapply(seleccion_estudiantes,index_education)
+print(aplicando_lapply)
+
+```
+
 
 
