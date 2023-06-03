@@ -57,5 +57,26 @@ selec_matriz <- matriz_resul[c(1,2,5),c(3,4)]
 selec_matriz
 
 ```
+Data Frame
+```{r}
+#inciso 5.1
+
+estudiantes_df <- data.frame(matriz_resul)
+estudiantes_df
+
+#inciso 5.2
+
+filtrado <- estudiantes_df[,c(2,5)]
+filtrado
+subset(filtrado,subset = estudiantes_df$Estadistica >50 & estudiantes_df$Mayoria_Edad==1)
+
+```
+Funciones condicionales y bucles
+
+```{r}
+#inciso 6.1
+
+
+```
 
 
