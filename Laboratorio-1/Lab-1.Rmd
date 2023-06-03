@@ -1,0 +1,61 @@
+Vectores y matrices
+
+
+```{r}
+# punto 1.1
+c(71.9,21.4,35.9,62.6,FALSE)
+c(59.8,13.4,75.3,75.9,TRUE)
+c(47.9,55.4,85.2,68.9,TRUE)
+c(89.2,65.3,41.5,84.1,FALSE)
+c(63.7,44.2,88.4,95.6,TRUE)
+
+e1 <-c(71.9,21.4,35.9,62.6,FALSE)
+e2 <-c(59.8,13.4,75.3,75.9,TRUE)
+e3 <-c(47.9,55.4,85.2,68.9,TRUE)
+e4 <-c(89.2,65.3,41.5,84.1,FALSE)
+e5 <-c(63.7,44.2,88.4,95.6,TRUE)
+
+#punto 1.2
+total_estudiantes <- c(e1,e2,e3,e4,e5)
+
+#punto 1.3
+
+matriz_estudiantes <- matrix(total_estudiantes, byrow = TRUE, nrow = 5)
+
+```
+Nombrado de una matriz
+
+```{r}
+# punto 2.1
+V_nombres <-c("Luis Perez", "Juan Lopez", "Rodigro Ortiz", "Samara Mendez", "Lucia Castro")
+V_cursos  <-c("Programacion", "Estadistica", "Matematicas","Fisica","Mayoria_Edad")
+
+#punto 2.2
+
+rownames(matriz_estudiantes) <- V_nombres
+colnames(matriz_estudiantes) <- V_cursos
+matriz_estudiantes
+```
+RowSums, Cbind
+```{r}
+#punto 3.1
+total_nota <- rowSums(matriz_estudiantes[,1:4])
+
+#punto 3.2
+
+matriz_resul <- cbind(matriz_estudiantes, total_nota)
+matriz_resul
+
+```
+Seleccionando elementos de una matriz
+
+```{r}
+
+#punto 4.1
+
+selec_matriz <- matriz_resul[c(1,2,5),c(3,4)]
+selec_matriz
+
+```
+
+
