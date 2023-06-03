@@ -91,17 +91,16 @@ recorrer_matriz(matriz_estudiantes)
 recorrer_matriz <- function(r_matriz){
   for (i in 1:nrow(r_matriz)) {
   for (j in 1:ncol(r_matriz[,1:4])) {
-    print(r_matriz[i,j])
         if (r_matriz[i,j]<=45) {
       
-      print("estudiante en riesgo")
+      print(paste(r_matriz[i,j],"estudiante en riesgo"))
       
     }else if (r_matriz[i,j]>45 & r_matriz[i,j]<61 ){
       
-      print("estudiante aprobado")
+      print(paste(r_matriz[i,j],"estudiante puede ser aprobado"))
     }else{
       
-      print("estudiante aprobado")
+      print(paste(r_matriz[i,j],"estudiante aprobado"))
     }
   }
   
