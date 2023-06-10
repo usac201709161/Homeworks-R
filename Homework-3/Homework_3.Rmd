@@ -36,4 +36,46 @@ df_seleccionado <- select(df, nombre, ciudad)
 # Mostrar el data frame resultante
 print(df_seleccionado)
 ```
+Leer archivo compartido
+
+```{r}
+ruta_archivo <-  "C:/Users/Alex/Documents/Fundamentos de programacion y scripting/Homework-1/Homeworks-R/Homework-3/primary_results.csv"
+
+dataset_results <- read.csv(ruta_archivo)
+print(dataset_results)
+
+```
+Inciso 1
+```{r}
+dataset_results
+dataset_results %>%
+  filter(county == "Florida")
+```
+Inciso 2
+
+```{r}
+dataset_results %>%
+  filter(candidate == "Donald Trump" | candidate == "Hillary Clinton")
+
+dataset_results %>%
+  filter(party =="Democrat" & county == "Shelby")
+
+dataset_results %>%
+   filter(state== "Alabama" & votes > 15000)
+
+dataset_results %>%
+  filter(candidate == "Donald Trump" | candidate == "Hillary Clinton") %>%
+  filter(party =="Democrat" & county == "Shelby") %>%
+  filter(state== "Alabama" & votes > 15000)
+```
+Inciso 3
+
+```{r}
+
+dataset_results %>%
+  filter(state == "Texas" & county == "Denton") %>%
+  select(party, candidate, votes) %>%
+  arrange(desc(votes))
+
+```
 
