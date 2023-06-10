@@ -78,4 +78,13 @@ dataset_results %>%
   arrange(desc(votes))
 
 ```
+Inciso 4
+
+```{r}
+dataset_results %>%
+  filter(candidate == "Ted Cruz" & state == "Alaska") %>%
+  mutate(vote_count = (votes/fraction_votes)) %>%
+  arrange(desc(vote_count))
+
+```
 
