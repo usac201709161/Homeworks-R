@@ -118,9 +118,8 @@ index_education <-function(grade){
   index<- (1+ (grade /100))/2
   return(index)
   
-  index_education(50)
 }
-
+  index_education(50)
 #punt0 7.2
 estudiantes_df
 seleccion_estudiantes <- estudiantes_df[,1:4]
