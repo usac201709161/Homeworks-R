@@ -1,8 +1,11 @@
 #Leer un archivo en R
+
 Para leer un archivo CSV en R, puedes utilizar la función read.csv() o
 read.csv2(). Estas funciones son parte del paquete base de R y permiten leer
 archivos CSV con separador de coma.
+
 ##ejemplo:
+
 ```{r}
 ruta_archivo <-  "C:/Users/Alex/Documents/Fundamentos de programacion y scripting/Homework-1/Homeworks-R/Homework-3/primary_results.csv"
 
@@ -11,5 +14,26 @@ datos <- read.csv(ruta_archivo)
 
 # Mostrar los datos leídos
 print(datos)
+```
+#Funcion select()
+La función select() de la paquetería dplyr en R se utiliza para seleccionar 
+columnas específicas de un data frame. Permite filtrar y mantener solo las 
+columnas deseadas, descartando las demás.
+
+```{r}
+library(dplyr)
+
+# Ejemplo de data frame
+df <- data.frame(
+  id = c(1, 2, 3),
+  nombre = c("Juan", "María", "Pedro"),
+  edad = c(25, 30, 35),
+  ciudad = c("Madrid", "Barcelona", "Valencia")
+)
+
+# Seleccionar columnas específicas
+df_seleccionado <- select(df, nombre, ciudad)
+# Mostrar el data frame resultante
+print(df_seleccionado)
 ```
 
