@@ -1,6 +1,6 @@
 #Leer un archivo en R
 
-Para leer un archivo CSV en R, puedes utilizar la función read.csv() o
+Para leer un archivo CSV, se puede utilizar la función read.csv() o
 read.csv2(). Estas funciones son parte del paquete base de R y permiten leer
 archivos CSV con separador de coma.
 
