@@ -1,0 +1,10 @@
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+handwashing <- read_csv('deaths_handwashing.csv')
+glimpse(handwashing)  #que tipo de de datos se estan leyendo
+handwashing
+```
+
