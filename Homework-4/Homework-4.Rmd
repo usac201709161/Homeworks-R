@@ -72,6 +72,39 @@ filtered_price
 
 ggplot(filtered_price, aes(x= cut, y= depth))+
   geom_bar(stat = "identity")
+
+#4.3
+ggplot(filtered_price, aes(x= cut, y= depth))+
+  geom_bar(stat = "identity") +
+  facet_wrap(~ clarity)
+
+#4.4
+ggplot(filtered_price, aes(x= cut, y= depth, fill = clarity))+
+  geom_bar(stat = "identity") +
+  facet_wrap(~ clarity)
+```
+GROUPING AND SUMMARIZING
+```{r}
+#1
+median_dimension_diamond <- dinamonds %>%
+  group_by(cut) %>%
+  summarize(mediaX = mean(x), mediaY = mean(y), mediaZ = mean(z))
+
+median_dimension_diamond
+  
+#2
+
+cut_premium <- diamonds %>%
+  filter(cut == "Premium") %>%
+  group_by(clarity) %>%
+  summarize(minPrice = min(price), maxPrice = max(price))
+cut_premium
+
+#3
+
+ggplot(cut_premium, aes(x= clarity, y= maxPrice, fill = clarity)) +
+  geom_bar(stat = "identity")
+
 ```
 
 
