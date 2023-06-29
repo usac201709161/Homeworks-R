@@ -26,5 +26,52 @@ dispersion_2
 
 
 ```
+HISTOGRAMA
+
+```{r}
+#2.1
+
+histograma <- ggplot(dinamonds, aes(x = price))+
+  geom_histogram(bins = 40)
+histograma
+
+#2.2
+histograma_2 <- ggplot(dinamonds, aes(x = price))+
+  geom_histogram(bins = 40) +
+  scale_x_log10() +
+  scale_y_log10()
+histograma_2
+
+
+histograma
+histograma_2
+
+
+```
+BOXPLOTS
+```{r}
+#3.1
+ggplot(dinamonds, aes(x=cut, y= price))+
+  geom_boxplot() +
+  scale_y_log10()
+
+#3.2
+ggplot(dinamonds, aes(x=cut, y= price, fill = cut))+
+  geom_boxplot() +
+  scale_y_log10()
+```
+FACETING
+```{r}
+#4.1
+filtered_price <- dinamonds %>%
+  filter(price > 1000 & cut %in% c("Good","Ideal","Premium"))
+filtered_price
+
+
+#4.2
+
+ggplot(filtered_price, aes(x= cut, y= depth))+
+  geom_bar(stat = "identity")
+```
 
 
