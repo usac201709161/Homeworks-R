@@ -3,8 +3,28 @@
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-handwashing <- read_csv('deaths_handwashing.csv')
-glimpse(handwashing)  #que tipo de de datos se estan leyendo
-handwashing
+dinamonds <- read_csv('diamonds.csv')
+glimpse(dinamonds)  #que tipo de de datos se estan leyendo
+dinamonds
 ```
+inciso 1 Dispersion
+
+```{r}
+# 1.1
+dispersion_1 <- ggplot(dinamonds, aes(x = carat, y = price))+
+  geom_point()
+dispersion_1
+
+#1.2
+dispersion_2 <- ggplot(dinamonds, aes(x = carat, y = price, color = clarity))+
+  geom_point()+
+  scale_y_log10()
+
+#1.3
+dispersion_2
+
+
+
+```
+
 
