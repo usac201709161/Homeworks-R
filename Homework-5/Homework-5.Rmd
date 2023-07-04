@@ -40,6 +40,22 @@ questions_with_tags
 #2. comparing scores across tags
 ```{r}
 #INCISO 2.1
+questions_with_tags %>%
+  group_by(tag_name)
+
+#inciso 2.2
+questions_with_tags %>%
+  group_by(tag_name) %>%
+  summarize(mean_score = mean(score))
+
+#inciso 2.3
+questions_with_tags %>%
+  group_by(tag_name) %>%
+  summarize(mean_score = mean(score)) %>%
+  arrange(desc(mean_score))
+```
+#3. finding gaps between questions and answers
+```{r}
 
 ```
 
