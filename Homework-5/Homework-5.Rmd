@@ -92,4 +92,15 @@ questions %>%
  question_answer_counts
  
 ```
+#5. joining questions, answers, and tags
+```{r}
+#5.1
+question_tags %>%
+  inner_join(question_answer_counts, by = c("question_id"="id"))
+
+#5.2
+question_tags %>%
+  inner_join(question_answer_counts, by = c("question_id"="id")) %>%
+  inner_join(tags, by =c("tag_id"="id"))
+```
 
