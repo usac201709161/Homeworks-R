@@ -1,0 +1,11 @@
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+questions <- read_csv("questions.csv")
+answer <- read_csv("answers.csv")
+tags <- read_csv("tags.csv")
+question_tags <- read_csv("question_tags.csv")
+```
+
