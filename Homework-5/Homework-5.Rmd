@@ -56,6 +56,40 @@ questions_with_tags %>%
 ```
 #3. finding gaps between questions and answers
 ```{r}
+#inciso 3.1
+questions
+answer
+questions %>%
+  inner_join(answer, by =c("id"= "question_id"), suffix = c("_question", "_answer"))
 
+#inciso 3.2
+questions %>%
+  inner_join(answer, by =c("id"= "question_id"), suffix = c("_question", "_answer"))%>%
+  mutate(gap = creation_date_answer - creation_date_question)
+
+```
+#.4 joining question and answer counts
+```{r}
+#inciso 4.1
+answer_counts <- answer %>%
+  count(question_id) %>%
+  arrange(question_id)
+answer_counts
+
+#inciso 4.2
+questions %>%
+  left_join(answer_counts, by =c("id"= "question_id"))
+
+#inciso 4.3
+questions %>%
+  left_join(answer_counts, by =c("id"= "question_id"))%>%
+  mutate(n = replace_na(n,0))
+
+#inciso 4.4
+ question_answer_counts <-  questions %>%
+  left_join(answer_counts, by =c("id"= "question_id"))%>%
+  mutate(n = replace_na(n,0))
+ question_answer_counts
+ 
 ```
 
